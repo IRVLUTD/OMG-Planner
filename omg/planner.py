@@ -344,7 +344,7 @@ class Planner(object):
             pose_grasp_global = np.tile(pose_grasp_global[:,None], (1, bin_num, 1, 1))
             pose_grasp_global[:,:,:3,3]  = (finger_translation[None] - delta_translation).transpose((1,0,2))
             pose_grasp_global[:,:,:3,:3] = local_rotation.transpose((1,0,2,3))
-            pose_grasp_global = pose_grasp_global.reshape(-1, 4, 4)
+            pose_grasp_global = pose_grasp_global.reshape(-1, 4, 4)         
 
         # standoff
         pose_standoff = np.tile(np.eye(4), (reach_tail_len, 1, 1, 1))
@@ -486,7 +486,7 @@ class Planner(object):
 
                         offset_pose = np.array(rotZ(np.pi / 2))  # and
                         pose_grasp = np.matmul(pose_grasp, offset_pose)  # flip x, y
-                        pose_grasp = ycb_special_case(pose_grasp, target_obj.name)
+                        # pose_grasp = ycb_special_case(pose_grasp, target_obj.name)
                         target_obj.grasps_poses = pose_grasp
 
                     else:

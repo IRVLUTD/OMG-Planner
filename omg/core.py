@@ -498,7 +498,6 @@ class PlanningScene(object):
         Debug and trajectory and related information
         """
         def fast_vis_simple(poses, cls_indexes, obj_vis_points, interact):
-
             vis_pt = []
             vis_color = []
             point_size = []
@@ -765,7 +764,9 @@ class PlanningScene(object):
         textures += ["" for _ in models]
         colors += [[255, 0, 0] for obj in self.env.objects]
         resize += [obj.resize for obj in self.env.objects]
+        print('loading objects to render')
         renderer.load_objects(models, scale=resize)
+        print('model size', len(models))
 
         """ renderer """
         renderer.set_projection_matrix(*cam_param)
